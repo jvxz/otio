@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-console.log('Hello via Bun!')
+import { program } from './cli'
+
+console.log(program.opts())
