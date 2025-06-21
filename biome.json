@@ -43,15 +43,7 @@
           "options": {}
         }
       },
-      "recommended": true,
-      "suspicious": {
-        "noConsole": {
-          "level": "error",
-          "options": {
-            "allow": ["warn", "error"]
-          }
-        }
-      }
+      "recommended": true
     }
   },
   "overrides": [
@@ -59,7 +51,12 @@
       "formatter": {
         "enabled": false
       },
-      "includes": [".next/**", "node_modules/**", "public/**", "dist/**"],
+      "includes": [
+        ".next/**",
+        "node_modules/**",
+        "public/**",
+        "dist/**"
+      ],
       "linter": {
         "enabled": false
       }
