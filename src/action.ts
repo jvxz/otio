@@ -1,18 +1,18 @@
 import c from 'chalk'
 import { Cause, Effect, Exit, Option } from 'effect'
 import { name, version } from '../package.json'
-import type { ProgramOptions } from './cli'
+import { cli, type ProgramOptions } from './cli'
 import { log } from './lib/log'
 import { runCmd } from './lib/utils/run-cmd'
 
-// const MAX_CMDS = 3
-
 function program(cmds: string[], options: ProgramOptions) {
   return Effect.gen(function* () {
-    // if (cmds.length > MAX_CMDS) {
-    //   log.error(`too many commands: ${cmds.join(' ')}`)
-    //   process.exit(1)
-    // }
+    if (cmds.length === 0) {
+      log.error('no commands provided')
+      log.break()
+
+      cli.help()
+    }
 
     if (options.header) {
       log.info(c.white.inverse(` ${name} v${version} `))
@@ -30,13 +30,6 @@ function program(cmds: string[], options: ProgramOptions) {
     yield* Effect.forEach(cmds, runCmd, {
       concurrency: 'unbounded',
     })
-
-    // cmd.on('close', (_, signal) => {
-    //   if (!signal) {
-    //     log.error('quitting...')
-    //     process.exit(1)
-    //   }
-    // })
   })
 }
 
