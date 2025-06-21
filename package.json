@@ -2,10 +2,12 @@
   "bin": {
     "otio": "./dist/index.js"
   },
+  "description": "freely forget about your dev servers",
   "devDependencies": {
     "@biomejs/biome": "^2.0.4",
     "@types/bun": "latest",
-    "bumpp": "^10.2.0"
+    "bumpp": "^10.2.0",
+    "commander": "^14.0.0"
   },
   "module": "index.ts",
   "name": "otio",
