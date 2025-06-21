@@ -6,8 +6,12 @@
   "devDependencies": {
     "@biomejs/biome": "^2.0.4",
     "@commander-js/extra-typings": "^14.0.0",
+    "@effect/language-service": "^0.21.7",
     "@types/bun": "latest",
-    "bumpp": "^10.2.0"
+    "bumpp": "^10.2.0",
+    "chalk": "^5.4.1",
+    "effect": "^3.16.8",
+    "execa": "^9.6.0"
   },
   "module": "index.ts",
   "name": "otio",
