@@ -1,0 +1,22 @@
+{
+  "bin": {
+    "otio": "./dist/index.js"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.4",
+    "@types/bun": "latest",
+    "bumpp": "^10.2.0"
+  },
+  "module": "index.ts",
+  "name": "otio",
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "bun build src/index.ts --watch --target node --outdir dist",
+    "release": "biome check && bumpp && pnpm publish",
+    "start": "bun run dist/index.js"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
