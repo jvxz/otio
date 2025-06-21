@@ -11,6 +11,7 @@ export const program = new Command()
     '-t, --timeout <timeout>',
     '(in seconds) how long the process should be idle for before shutting down',
   )
+  .option('--no-header', 'do not display header when running commands')
   .action(handleAction)
 
 export type ProgramOptions = ReturnType<typeof program.opts>
