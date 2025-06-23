@@ -1,30 +1,18 @@
 import c from 'chalk'
 import { Cause, Effect, Exit, Option } from 'effect'
-import { name, version } from '../package.json'
-import { cli, type ProgramOptions } from './cli'
+import type { ProgramOptions } from './cli'
 import { log } from './lib/log'
 import { optionsStore } from './lib/store/opts'
+import { handleEmpty } from './lib/utils/handle-empty'
 import { runCmd } from './lib/utils/run-cmd'
+import { showHeader } from './lib/utils/show-header'
 import { handleTimeout } from './lib/utils/timeout'
 
 const program = Effect.gen(function* () {
   const opts = optionsStore.getState()
 
-  if (opts.cmds.length === 0) {
-    log.error('no commands provided')
-    log.break()
-
-    cli.help()
-  }
-
-  if (opts.header) {
-    log.info(c.white.inverse(` ${name} v${version} `))
-
-    const cmdsList = opts.cmds.map(cmd => `${c.white.bold.dim(cmd)}`).join(', ')
-    log.info(`> ${cmdsList}`)
-
-    log.break()
-  }
+  handleEmpty()
+  yield* showHeader
 
   if (opts.timeout) {
     log.info(`with timeout: ${c.white.dim(opts.timeout)}`)
