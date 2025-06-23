@@ -1,4 +1,3 @@
-import c from 'chalk'
 import { Cause, Effect, Exit, Option } from 'effect'
 import type { ProgramOptions } from './cli'
 import { log } from './lib/log'
@@ -14,17 +13,8 @@ const program = Effect.gen(function* () {
   handleEmpty()
   yield* showHeader
 
-  if (opts.timeout) {
-    log.info(`with timeout: ${c.white.dim(opts.timeout)}`)
-  }
-
   // run timeout handler in the background
-  yield* Effect.fork(
-    handleTimeout({
-      dir: opts.dir,
-      timeout: Number(opts.timeout),
-    }),
-  )
+  yield* Effect.fork(handleTimeout)
 
   // run all commands in parallel
   yield* Effect.forEach(opts.cmds, cmd => runCmd(cmd), {

@@ -10,10 +10,11 @@ export const cli = new Command()
   .option(
     '-t, --timeout <timeout>',
     'how long (in seconds) the process should be idle for before shutting down',
-    '10',
+    '180',
   )
   .option('--no-header', 'do not display header when running commands')
   .option('-d, --dir <dir>', 'the directory to watch for changes', '.')
+  .option('-v, --verbose', 'show verbose output', false)
 
   .addHelpText(
     'after',

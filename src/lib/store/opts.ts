@@ -14,6 +14,7 @@ const initialState: State = {
   dir: '.',
   header: false,
   timeout: '10s',
+  verbose: false,
 }
 
 const optionsStore = createStore<State & Actions>(set => ({
