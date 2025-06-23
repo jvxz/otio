@@ -3,38 +3,55 @@ import { Cause, Effect, Exit, Option } from 'effect'
 import { name, version } from '../package.json'
 import { cli, type ProgramOptions } from './cli'
 import { log } from './lib/log'
+import { optionsStore } from './lib/store/opts'
 import { runCmd } from './lib/utils/run-cmd'
+import { handleTimeout } from './lib/utils/timeout'
 
-function program(cmds: string[], options: ProgramOptions) {
-  return Effect.gen(function* () {
-    if (cmds.length === 0) {
-      log.error('no commands provided')
-      log.break()
+const program = Effect.gen(function* () {
+  const opts = optionsStore.getState()
 
-      cli.help()
-    }
+  if (opts.cmds.length === 0) {
+    log.error('no commands provided')
+    log.break()
 
-    if (options.header) {
-      log.info(c.white.inverse(` ${name} v${version} `))
+    cli.help()
+  }
 
-      const cmdsList = cmds.map(cmd => `${c.white.bold.dim(cmd)}`).join(', ')
-      log.info(`> ${cmdsList}`)
+  if (opts.header) {
+    log.info(c.white.inverse(` ${name} v${version} `))
 
-      log.break()
-    }
+    const cmdsList = opts.cmds.map(cmd => `${c.white.bold.dim(cmd)}`).join(', ')
+    log.info(`> ${cmdsList}`)
 
-    if (options.timeout) {
-      log.info(`with timeout: ${c.white.dim(options.timeout)}`)
-    }
+    log.break()
+  }
 
-    yield* Effect.forEach(cmds, runCmd, {
-      concurrency: 'unbounded',
-    })
+  if (opts.timeout) {
+    log.info(`with timeout: ${c.white.dim(opts.timeout)}`)
+  }
+
+  // run timeout handler in the background
+  yield* Effect.fork(
+    handleTimeout({
+      dir: opts.dir,
+      timeout: Number(opts.timeout),
+    }),
+  )
+
+  // run all commands in parallel
+  yield* Effect.forEach(opts.cmds, cmd => runCmd(cmd), {
+    concurrency: 'unbounded',
   })
-}
+})
 
 export async function handleAction(cmds: string[], options: ProgramOptions) {
-  const exit = await program(cmds, options).pipe(Effect.runPromiseExit)
+  // initialize options store
+  optionsStore.setState({
+    ...options,
+    cmds,
+  })
+
+  const exit = await program.pipe(Effect.runPromiseExit)
 
   Exit.match(exit, {
     onFailure: error => {
