@@ -9,9 +9,11 @@ export const cli = new Command()
   .addArgument(new Argument('[commands...]', 'the command(s) to run'))
   .option(
     '-t, --timeout <timeout>',
-    '(in seconds) how long the process should be idle for before shutting down',
+    'how long (in seconds) the process should be idle for before shutting down',
+    '10',
   )
   .option('--no-header', 'do not display header when running commands')
+  .option('-d, --dir <dir>', 'the directory to watch for changes', '.')
 
   .addHelpText(
     'after',
