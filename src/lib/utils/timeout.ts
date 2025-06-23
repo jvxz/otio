@@ -1,4 +1,5 @@
 import { watch } from 'chokidar'
+import cursor from 'cli-cursor'
 import { Data, Duration, Effect, Fiber, Runtime } from 'effect'
 import { taskAbortController } from '../abort'
 import { log } from '../log'
@@ -24,6 +25,8 @@ function makeTimeout(opts: HandleTimeoutOptions) {
 
     // abort all ongoing execa processes
     taskAbortController.abort()
+
+    cursor.show()
 
     return yield* Effect.succeed('timeout reached')
   })
