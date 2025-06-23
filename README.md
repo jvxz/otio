@@ -26,9 +26,8 @@ This tool is most useful for running development servers. Forgetting about them 
 
 ## usage
 
-
 ```bash
-otio "effect run dev"
+otio "npm run dev"
 ```
 
 > Runs `npm run dev` inside `otio` with default settings.
@@ -56,6 +55,48 @@ otio "npm run dev" --timeout 120 --dir /foo/bar/baz
 ```
 
 > Runs `npm run dev`, watching for changes in `/foo/bar/baz` with a timeout of 120 seconds (2 minutes).
+
+## installation
+
+```bash
+npm i -D otio
+```
+
+> Installs `otio` as a dev dependency in the current node project. Ideal for running it via `npm run dev`.
+
+```bash
+npx otio
+```
+
+> Runs `otio` without installing.
+
+```bash
+npm i -g otio
+```
+
+> Installs `otio` globally. Ideal for running it everywhere.
+
+## example
+
+### package.json
+
+```json
+{
+  "devDependencies": {
+    "otio": "1.0.0"
+  },
+  "name": "my-project",
+  "scripts": {
+    "dev:watch": "bun build --watch --target node --outdir dist src/index.ts",
+    "dev": "otio \"bun run dev:watch\" --dir \"./src\" --timeout 120",
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
+
+```
+
+> Doing `bun run dev` will run `bun run dev:watch` inside `otio`, watching for changes in the `./src` directory with a timeout of 120 seconds (2 minutes).
 
 ## license
 
