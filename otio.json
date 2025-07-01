@@ -1,0 +1,6 @@
+{
+  "commands": [
+    "bun run dev"
+  ],
+  "header": false
+}

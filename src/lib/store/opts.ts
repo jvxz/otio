@@ -2,24 +2,18 @@ import { createStore } from 'zustand'
 import type { ProgramOptions } from '../../cli'
 
 interface State extends ProgramOptions {
-  cmds: string[]
-}
-
-type Actions = {
-  setOpts: (opts: State) => void
+  commands: string[]
 }
 
 const initialState: State = {
-  cmds: [],
+  commands: [],
   dir: '.',
   header: false,
   timeout: '10s',
   verbose: false,
 }
 
-const optionsStore = createStore<State & Actions>(set => ({
-  ...initialState,
-  setOpts: opts => set(opts),
-}))
+const optionsStore = createStore<State>(() => initialState)
 
 export { optionsStore }
+export type { State as OptionsState }

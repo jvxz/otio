@@ -10,7 +10,9 @@ export const showHeader = Effect.gen(function* () {
   if (opts.header) {
     log.info(c.white.inverse(` ${name} v${version} `))
 
-    const cmdsList = opts.cmds.map(cmd => `${c.white.bold.dim(cmd)}`).join(', ')
+    const cmdsList = opts.commands
+      .map(cmd => `${c.white.bold.dim(cmd)}`)
+      .join(', ')
     log.info(`> ${cmdsList}`)
 
     log.break()
