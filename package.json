@@ -4,16 +4,17 @@
   },
   "description": "freely forget about your dev servers",
   "devDependencies": {
-    "@biomejs/biome": "^2.0.4",
+    "@biomejs/biome": "^2.0.6",
     "@commander-js/extra-typings": "^14.0.0",
-    "@effect/language-service": "^0.21.7",
+    "@effect/language-service": "^0.23.4",
     "@types/bun": "latest",
     "bumpp": "^10.2.0",
     "chalk": "^5.4.1",
     "cli-cursor": "^5.0.0",
-    "effect": "^3.16.8",
+    "effect": "^3.16.10",
     "execa": "^9.6.0",
-    "zustand": "^5.0.5"
+    "zod": "^3.25.67",
+    "zustand": "^5.0.6"
   },
   "module": "index.ts",
   "name": "otio",
