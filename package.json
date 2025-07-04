@@ -2,19 +2,20 @@
   "bin": {
     "otio": "./dist/index.js"
   },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "cli-cursor": "^5.0.0",
+    "effect": "^3.16.10",
+    "zod": "^3.25.67",
+    "zustand": "^5.0.6"
+  },
   "description": "freely forget about your dev servers",
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
     "@commander-js/extra-typings": "^14.0.0",
     "@effect/language-service": "^0.23.4",
     "@types/bun": "latest",
-    "bumpp": "^10.2.0",
-    "chalk": "^5.4.1",
-    "cli-cursor": "^5.0.0",
-    "effect": "^3.16.10",
-    "execa": "^9.6.0",
-    "zod": "^3.25.67",
-    "zustand": "^5.0.6"
+    "bumpp": "^10.2.0"
   },
   "module": "index.ts",
   "name": "otio",
@@ -22,6 +23,7 @@
     "typescript": "^5"
   },
   "scripts": {
+    "build": "bun build src/index.ts --target node --outdir dist --production",
     "dev": "bun build src/index.ts --watch --target node --outdir dist",
     "release": "biome check && bumpp && pnpm publish",
     "start": "bun run dist/index.js"
