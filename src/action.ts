@@ -37,6 +37,9 @@ export async function handleAction(cmds: string[], options: ProgramOptions) {
 
       if (Option.isSome(cause)) {
         log.error(cause.value.message)
+        if (process.env.NODE_ENV === 'development') {
+          log.error(String(cause.value.cause))
+        }
       }
 
       process.exit(1)
