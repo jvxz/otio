@@ -17,4 +17,7 @@ export const log = {
   info: (msg: string) => {
     console.log(c.gray(msg))
   },
+  warn: (msg: string) => {
+    console.log(c.yellow.inverse.bold(' warning '), c.yellow(msg))
+  },
 }
