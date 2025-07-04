@@ -1,4 +1,4 @@
-import { createStore } from 'zustand'
+import { createStore } from 'zustand/vanilla'
 import type { ProgramOptions } from '../../cli'
 
 interface State extends ProgramOptions {
