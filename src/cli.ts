@@ -12,7 +12,7 @@ export const cli = new Command()
     'how long (in seconds) the process should be idle for before shutting down',
     '180',
   )
-  .option('--no-header', 'do not display header when running commands')
+  .option('--header', 'display header when running commands', false)
   .option('-d, --dir <dir>', 'the directory to watch for changes', '.')
   .option('-v, --verbose', 'show verbose output', false)
 
