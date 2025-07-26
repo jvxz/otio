@@ -20,7 +20,7 @@ export const cli = new Command()
     'after',
     `
 Examples:
-  $ otio -t 10
+  $ otio "npm run dev" -t 10
   `,
   )
 
