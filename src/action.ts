@@ -1,9 +1,10 @@
-import { Cause, Effect, Exit, Option } from 'effect'
+import { Effect } from 'effect'
 import type { ProgramOptions } from './cli'
-import { log } from './lib/log'
 import { optionsStore } from './lib/store/opts'
 import { handleEmpty } from './lib/utils/handle-empty'
+import { handleOptions } from './lib/utils/handle-options'
 import { runCmd } from './lib/utils/run-cmd'
+import { runEffect } from './lib/utils/run-effect'
 import { showHeader } from './lib/utils/show-header'
 import { handleTimeout } from './lib/utils/timeout'
 
@@ -23,27 +24,6 @@ const program = Effect.gen(function* () {
 })
 
 export async function handleAction(cmds: string[], options: ProgramOptions) {
-  // initialize options store
-  optionsStore.setState({
-    ...options,
-    cmds,
-  })
-
-  const exit = await program.pipe(Effect.runPromiseExit)
-
-  Exit.match(exit, {
-    onFailure: error => {
-      const cause = Cause.failureOption(error)
-
-      if (Option.isSome(cause)) {
-        log.error(cause.value.message)
-        if (process.env.NODE_ENV === 'development') {
-          log.error(String(cause.value.cause))
-        }
-      }
-
-      process.exit(1)
-    },
-    onSuccess: () => {},
-  })
+  await runEffect(handleOptions(cmds, options))
+  await runEffect(program)
 }
