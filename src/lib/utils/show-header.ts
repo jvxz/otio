@@ -8,7 +8,7 @@ export const showHeader = Effect.gen(function* () {
   const opts = optionsStore.getState()
 
   if (opts.header) {
-    log.info(c.white.inverse(` ${name} v${version} `))
+    log.info(`${c.white.inverse(` ${name} v${version} `)} ${opts.timeout}s`)
   }
 
   return yield* Effect.void
