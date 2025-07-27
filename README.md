@@ -86,8 +86,8 @@ npm i -g otio
   },
   "name": "my-project",
   "scripts": {
-    "dev:watch": "bun build --watch --target node --outdir dist src/index.ts",
-    "dev": "otio \"bun run dev:watch\" --dir \"./src\" --timeout 120",
+    "dev:watch": "tsc --watch",
+    "dev": "otio \"npm run dev:watch\" --dir \"./src\" --timeout 120"
   },
   "type": "module",
   "version": "0.0.0"
@@ -95,7 +95,7 @@ npm i -g otio
 
 ```
 
-> Doing `bun run dev` will run `bun run dev:watch` inside `otio`, watching for changes in the `./src` directory with a timeout of 120 seconds (2 minutes).
+> Doing `npm run dev` will run `npm run dev:watch` inside `otio`, watching for changes in the `./src` directory with a timeout of 120 seconds (2 minutes).
 
 ## license
 
