@@ -1,4 +1,9 @@
 {
+  "author": {
+    "email": "hi@jamie.to",
+    "name": "Jamie Jacobs",
+    "url": "https://jamie.to"
+  },
   "bin": {
     "otio": "./dist/index.js"
   },
@@ -19,6 +24,10 @@
   "name": "otio",
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jvxz/otio"
   },
   "scripts": {
     "build": "bun build src/index.ts --target node --outdir dist --production",
