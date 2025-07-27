@@ -10,5 +10,6 @@ export function handleEmpty() {
     log.break()
 
     cli.help()
+    process.exit(1)
   }
 }
