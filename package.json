@@ -31,10 +31,11 @@
   },
   "scripts": {
     "build": "bun build src/index.ts --target node --outdir dist --production",
+    "bump": "bun run lint && bumpp",
     "dev": "bun build src/index.ts --watch --target node --outdir dist",
     "lint": "biome check ./src",
     "prepublishOnly": "bun run build",
-    "publish": "bun run lint && bumpp && pnpm publish",
+    "publish": "pnpm publish",
     "start": "bun run dist/index.js"
   },
   "type": "module",
