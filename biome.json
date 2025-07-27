@@ -52,9 +52,7 @@
         "enabled": false
       },
       "includes": [
-        ".next/**",
         "node_modules/**",
-        "public/**",
         "dist/**"
       ],
       "linter": {

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "allowJs": true,
-    "jsx": "react-jsx",
     "lib": ["ESNext"],
     "module": "ESNext",
     "moduleDetection": "force",
@@ -15,13 +14,13 @@
     "noUnusedParameters": false,
     "plugins": [
       {
-        "name": "@effect/language-service"
-      }
+        "name": "@effect/language-service",
+      },
     ],
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
     "target": "ESNext",
-    "verbatimModuleSyntax": true
-  }
+    "verbatimModuleSyntax": true,
+  },
 }
