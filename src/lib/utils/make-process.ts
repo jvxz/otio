@@ -11,6 +11,7 @@ export function makeProcess(rawCmd: string) {
   }
 
   const proc = child_process.spawn(command, args, {
+    shell: true,
     signal: taskSignal,
     stdio: 'inherit',
     windowsHide: false,
