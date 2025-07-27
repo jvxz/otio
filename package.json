@@ -23,6 +23,7 @@
   "scripts": {
     "build": "bun build src/index.ts --target node --outdir dist --production",
     "dev": "bun build src/index.ts --watch --target node --outdir dist",
+    "prepublishOnly": "bun run build",
     "release": "biome check && bumpp && pnpm publish",
     "start": "bun run dist/index.js"
   },
