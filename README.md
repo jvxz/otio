@@ -1,6 +1,5 @@
 <h1 align="center">📟 otio</h1>
 <p align="center"><em>Latin, short for 'otiosa', meaning leisure or free</em></p>
-<p align="center">Freely forget about your dev servers.</p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
